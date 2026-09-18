@@ -1,100 +1,251 @@
 <!doctype html>
+
 <html lang="vi">
+
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>ULTRA XX8 WED</title>
-<script src="https://telegram.org/js/telegram-web-app.js?63"></script>
-<style>
-*{box-sizing:border-box} :root{--p:#fc5a5f;--p2:#e84d59;--w:#6b2430;--s:#fff5f2;--l:#f0d6d8;--m:#887478}
-html,body{margin:0;min-height:100%;font-family:Arial,sans-serif} body{background:linear-gradient(180deg,#fff0f2,#fff 64%);padding:14px 12px;color:#24262b}
-.app{max-width:430px;margin:auto}.header{text-align:center;padding:5px 0 14px}.logo{width:64px;height:64px;border-radius:20px;margin:0 auto 9px;background:linear-gradient(var(--p),var(--p2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:25px;font-weight:900}
-h1{font-size:21px;color:var(--w);margin:0}.sub{font-size:13px;color:var(--m);margin-top:6px}.card{background:#fff;border:1px solid var(--l);border-radius:22px;padding:16px;box-shadow:0 12px 32px #5a232d14}
-.user{display:flex;gap:11px;align-items:center;background:var(--s);border-radius:15px;padding:10px 12px;margin-bottom:14px}.av{width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid var(--l);color:var(--p);display:flex;align-items:center;justify-content:center;font-weight:900}.user b{display:block;font-size:14px}.user small{color:var(--m);font-size:12px}
-.step{display:none}.step.active{display:block}.title{text-align:center;color:var(--w);font-size:18px;font-weight:900;margin:4px 0 5px}.desc{text-align:center;color:var(--m);font-size:13px;margin-bottom:15px}.back{border:0;background:none;color:#6e6870;font-size:13px;padding:0;margin:0 0 10px;cursor:pointer}
-.opt{width:100%;min-height:54px;margin:8px 0;border:1.5px solid #e6d8da;border-radius:14px;background:#fff;padding:10px 14px;display:flex;align-items:center;gap:11px;font-size:16px;font-weight:900;cursor:pointer;text-align:left}.opt:hover{border-color:var(--p);background:#fff7f7}.ico{font-size:21px;width:26px;text-align:center}.chev{margin-left:auto;color:#81777b;font-size:22px;font-weight:400}
-.sel{text-align:center;margin-bottom:12px}.sel strong{font-size:19px;color:var(--w)}.sel small{display:block;color:var(--m);margin-top:4px}.lab{font-size:14px;font-weight:900;color:var(--w);margin:4px 0 8px}
-textarea{width:100%;min-height:112px;resize:vertical;border:1.5px solid #ddd2d4;border-radius:14px;padding:12px 13px;font:15px/1.45 Arial;outline:none}textarea:focus{border-color:var(--p);box-shadow:0 0 0 3px #fc5a5f1c}
-.parsed{display:none;background:#f1fbf5;border:1px solid #d1ebda;border-radius:14px;padding:11px 12px;margin-top:10px;font-size:13px;line-height:1.7}.parsed.show{display:block}.parsed b{color:#176637}
-.primary{width:100%;height:53px;border:0;border-radius:14px;margin-top:13px;background:linear-gradient(var(--p),var(--p2));color:#fff;font-size:16px;font-weight:900;cursor:pointer}.primary:disabled{opacity:.55}
-.status{display:none;margin-top:12px;border-radius:13px;padding:12px;text-align:center;font-size:14px}.status.err{display:block;background:#fff0f0;border:1px solid #f1cccc;color:#9b2731}
-.success{text-align:center;padding:10px 0}.check{width:76px;height:76px;border-radius:50%;margin:0 auto 12px;background:#2cbd5c;color:#fff;display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:900}.summary{background:var(--s);border-radius:15px;padding:12px 14px;margin:14px 0;text-align:left;font-size:14px;line-height:1.9}.secondary{width:100%;height:49px;border:1.5px solid var(--p);border-radius:14px;background:#fff;color:var(--w);font-size:15px;font-weight:900}.note{text-align:center;color:#968084;font-size:11px;margin-top:11px}
-</style>
-</head>
-<body>
-<div class="app">
-<div class="header"><div class="logo">XX8</div><h1>ULTRA XX8 WED</h1><div class="sub">Điểm danh bộ phận Online</div></div>
-<div class="card">
-<div class="user"><div class="av" id="avatar">👤</div><div><b id="name">Đang nhận diện Telegram...</b><small id="tid"></small></div></div>
 
-<section class="step active" id="dept">
-  <div class="title">👥 CHỌN BỘ PHẬN</div><div class="desc">Chọn bộ phận để hiển thị đúng khung giờ</div>
-  <button class="opt" data-dept="XNK"><span class="ico">💰</span>XNK<span class="chev">›</span></button>
-  <button class="opt" data-dept="FK"><span class="ico">💳</span>FK<span class="chev">›</span></button>
-  <button class="opt" data-dept="CSKH"><span class="ico">🎧</span>CSKH<span class="chev">›</span></button>
-</section>
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,viewport-fit=cover"
+>
 
-<section class="step" id="shift">
-  <button class="back" id="backDept">← Quay lại</button>
-  <div class="sel"><strong id="deptName"></strong><small>Chọn ca làm việc</small></div>
-  <div id="shiftList"></div>
-</section>
+<title>
+ULTRA XX8 WED
+</title>
 
-<section class="step" id="ultra">
-  <button class="back" id="backShift">← Quay lại</button>
-  <div class="sel"><strong id="choice"></strong><small>Dán thông tin ULTRA</small></div>
-  <div class="lab">💻 THÔNG TIN ULTRA</div>
-  <textarea id="paste" placeholder="Dán nguyên đoạn vào đây:
-Your ID: 215257316
-Password: xebxp0"></textarea>
-  <div class="parsed" id="parsed"><div>✅ Your ID: <b id="pid"></b></div><div>✅ Password: <b id="ppw">••••••</b></div></div>
-  <button class="primary" id="send">XÁC NHẬN GỬI</button>
-  <div class="status" id="status"></div>
-  <div class="note">Copy cả Your ID + Password và dán 1 lần.</div>
-</section>
-
-<section class="step" id="success">
-  <div class="success"><div class="check">✓</div><div class="title">GỬI THÀNH CÔNG!</div><div class="desc">Thông tin đã gửi đến nhóm quản lý.</div>
-  <div class="summary">🏢 Bộ phận: <b id="sDept"></b><br>🕐 Ca làm: <b id="sShift"></b><br>💻 Your ID: <b id="sId"></b></div>
-  <button class="secondary" id="again">↻ GỬI CA KHÁC</button></div>
-</section>
-</div></div>
-
-<script>
-const tg=window.Telegram?.WebApp;
-const SHIFTS={
- XNK:[["XNK_08_18","☀️","08:00 - 18:00"],["XNK_13_23","🌤️","13:00 - 23:00"],["XNK_22_08","🌙","22:00 - 08:00"]],
- FK:[["FK_08_18","☀️","08:00 - 18:00"],["FK_12_22","🌤️","12:00 - 22:00"],["FK_22_08","🌙","22:00 - 08:00"]],
- CSKH:[["CSKH_11_21","🔵","11:00 - 21:00"],["CSKH_08_18","☀️","08:00 - 18:00"],["CSKH_16_02","🌆","16:00 - 02:00"],["CSKH_22_08","🌙","22:00 - 08:00"]]
-};
-let dep="",sh=null,uid="",pw="";
-function show(id){document.querySelectorAll(".step").forEach(e=>e.classList.remove("active"));document.getElementById(id).classList.add("active")}
-function render(){document.getElementById("deptName").textContent=dep;let l=document.getElementById("shiftList");l.innerHTML="";SHIFTS[dep].forEach(x=>{let b=document.createElement("button");b.className="opt";b.innerHTML=`<span class="ico">${x[1]}</span>${x[2]}<span class="chev">›</span>`;b.onclick=()=>{sh={code:x[0],label:x[2]};document.getElementById("choice").textContent=dep+" · "+x[2];show("ultra")};l.appendChild(b)})}
-document.querySelectorAll("[data-dept]").forEach(b=>b.onclick=()=>{dep=b.dataset.dept;render();show("shift")});
-document.getElementById("backDept").onclick=()=>show("dept");document.getElementById("backShift").onclick=()=>show("shift");
-function parse(){
- let t=document.getElementById("paste").value.replace(/\r/g,"");
- let a=t.match(/Your\s*ID\s*[:：]\s*([^\n]+)/i)||t.match(/ID\s*của\s*bạn\s*[:：]\s*([^\n]+)/i);
- let p=t.match(/Password\s*[:：]\s*([^\n]+)/i)||t.match(/Mật\s*khẩu\s*[:：]\s*([^\n]+)/i);
- uid=a?a[1].trim():"";pw=p?p[1].trim():"";
- let box=document.getElementById("parsed");
- if(uid&&pw){document.getElementById("pid").textContent=uid;document.getElementById("ppw").textContent="•".repeat(Math.min(Math.max(pw.length,6),12));box.classList.add("show")}else box.classList.remove("show")
-}
-document.getElementById("paste").oninput=parse;
-function err(m){let s=document.getElementById("status");s.textContent=m;s.className="status err"}
-document.getElementById("send").onclick=async()=>{
- parse();if(!dep||!sh)return err("Vui lòng chọn bộ phận và ca.");if(!uid||!pw)return err("Không đọc được Your ID hoặc Password. Hãy dán nguyên đoạn ULTRA.");if(!tg||!tg.initData)return err("Phải mở từ bot Telegram.");
- let b=document.getElementById("send");b.disabled=true;b.textContent="ĐANG GỬI...";
- try{
-  let r=await fetch("/submit",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({initData:tg.initData,department:dep,shift:sh.code,shift_label:sh.label,ultra_id:uid,ultra_password:pw})});
-  let d=await r.json().catch(()=>({}));if(!r.ok||!d.ok)throw new Error(d.message||"Gửi thất bại.");
-  document.getElementById("sDept").textContent=dep;document.getElementById("sShift").textContent=sh.label;document.getElementById("sId").textContent=uid;
-  document.getElementById("paste").value="";pw="";document.getElementById("parsed").classList.remove("show");show("success");try{tg.HapticFeedback.notificationOccurred("success")}catch(_){}
- }catch(e){err(e.message)}finally{b.disabled=false;b.textContent="XÁC NHẬN GỬI"}
-};
-document.getElementById("again").onclick=()=>{dep="";sh=null;uid="";pw="";document.getElementById("paste").value="";show("dept")};
-if(tg){tg.ready();tg.expand();try{tg.setHeaderColor("#fc5a5f");tg.setBackgroundColor("#fff5f2")}catch(_){}
- let u=tg.initDataUnsafe?.user;if(u){let n=[u.first_name,u.last_name].filter(Boolean).join(" ");document.getElementById("name").textContent=n||"Nhân viên Telegram";document.getElementById("tid").textContent="Telegram ID: "+u.id;document.getElementById("avatar").textContent=(u.first_name||"T")[0].toUpperCase()}}
-else document.getElementById("name").textContent="Hãy mở từ bot Telegram";
+<script
+  src="https://telegram.org/js/telegram-web-app.js?63">
 </script>
-</body></html>
+
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+
+:root{
+
+  --pink:#fc5a5f;
+
+  --pink2:#e84d59;
+
+  --wine:#6b2430;
+
+  --soft:#fff5f2;
+
+  --line:#f0d6d8;
+
+  --muted:#887478;
+
+}
+
+
+html,
+body{
+
+  margin:0;
+
+  min-height:100%;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+}
+
+
+body{
+
+  background:
+    linear-gradient(
+      180deg,
+      #fff0f2,
+      #ffffff 65%
+    );
+
+  padding:
+    14px
+    12px;
+
+  color:#24262b;
+
+}
+
+
+.app{
+
+  max-width:430px;
+
+  margin:auto;
+
+}
+
+
+/* =====================
+   HEADER
+===================== */
+
+.header{
+
+  text-align:center;
+
+  padding:
+    5px
+    0
+    14px;
+
+}
+
+
+.logo{
+
+  width:64px;
+
+  height:64px;
+
+  border-radius:20px;
+
+  margin:
+    0
+    auto
+    9px;
+
+  background:
+    linear-gradient(
+      var(--pink),
+      var(--pink2)
+    );
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:25px;
+
+  font-weight:900;
+
+}
+
+
+.header h1{
+
+  font-size:21px;
+
+  color:var(--wine);
+
+  margin:0;
+
+}
+
+
+.header small{
+
+  color:var(--muted);
+
+}
+
+
+/* =====================
+   CARD
+===================== */
+
+.card{
+
+  background:#fff;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:22px;
+
+  padding:16px;
+
+  box-shadow:
+    0 12px 30px
+    rgba(
+      90,
+      35,
+      45,
+      .08
+    );
+
+}
+
+
+/* =====================
+   TELEGRAM USER
+===================== */
+
+.user{
+
+  display:flex;
+
+  gap:10px;
+
+  align-items:center;
+
+  background:
+    var(--soft);
+
+  border-radius:15px;
+
+  padding:
+    10px
+    12px;
+
+  margin-bottom:14px;
+
+}
+
+
+.avatar{
+
+  width:40px;
+
+  height:40px;
+
+  border-radius:50%;
+
+  background:white;
+
+  border:
+    1px solid
+    var(--line);
+
+  color:
+    var(--pink);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-weight:900;
+
+}
+
+
+.user b{
+
+  display:block;
+
+  font-size:14px;
+
+}
+
+
+.user small{
+
+  color:
+   
