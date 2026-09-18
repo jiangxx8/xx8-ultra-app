@@ -1,218 +1,202 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>XX8 ULTRA</title>
-  <script src="https://telegram.org/js/telegram-web-app.js?63"></script>
-  <style>
-    * { box-sizing: border-box; }
-    :root {
-      --pink:#fc5a5f;
-      --pink2:#e84d59;
-      --wine:#6b2430;
-      --soft:#fff5f2;
-      --line:#f1d8d8;
-      --text:#20242a;
-    }
-    body {
-      margin:0;
-      min-height:100vh;
-      font-family:Arial,Helvetica,sans-serif;
-      background:linear-gradient(180deg,#fff2f3 0%,#fff 55%);
-      color:var(--text);
-      padding:18px 14px max(18px, env(safe-area-inset-bottom));
-    }
-    .wrap { max-width:430px; margin:0 auto; }
-    .head {
-      text-align:center;
-      padding:12px 8px 18px;
-    }
-    .logo {
-      width:68px;height:68px;border-radius:22px;
-      margin:0 auto 10px;
-      display:flex;align-items:center;justify-content:center;
-      background:var(--pink);
-      color:white;font-size:27px;font-weight:900;
-      box-shadow:0 10px 25px rgba(252,90,95,.25);
-    }
-    h1 { margin:0; font-size:24px; color:var(--wine); }
-    .sub { margin:7px 0 0; color:#7a6669; font-size:14px; }
-    .card {
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:22px;
-      padding:18px;
-      box-shadow:0 12px 36px rgba(80,30,40,.08);
-    }
-    .user {
-      display:flex;align-items:center;gap:12px;
-      background:var(--soft);
-      border-radius:16px;
-      padding:12px 13px;
-      margin-bottom:17px;
-    }
-    .avatar {
-      width:42px;height:42px;border-radius:50%;
-      display:flex;align-items:center;justify-content:center;
-      background:#fff;color:var(--pink);font-weight:800;
-      border:1px solid var(--line);
-    }
-    .user b { display:block; font-size:15px; }
-    .user small { color:#8b7478; }
-    label { display:block; font-weight:800; color:var(--wine); margin:5px 0 8px; }
-    input {
-      width:100%;
-      height:54px;
-      border:1.5px solid #ded5d6;
-      border-radius:14px;
-      padding:0 15px;
-      font-size:17px;
-      outline:none;
-      background:#fff;
-    }
-    input:focus { border-color:var(--pink); box-shadow:0 0 0 3px rgba(252,90,95,.12); }
-    button {
-      width:100%;
-      height:54px;
-      margin-top:15px;
-      border:0;border-radius:14px;
-      background:linear-gradient(180deg,var(--pink),var(--pink2));
-      color:#fff;font-size:16px;font-weight:900;
-      cursor:pointer;
-    }
-    button:disabled { opacity:.55; cursor:not-allowed; }
-    .note {
-      text-align:center;
-      font-size:12px;
-      color:#927d80;
-      margin-top:12px;
-      line-height:1.45;
-    }
-    .status {
-      display:none;
-      margin-top:14px;
-      padding:12px 13px;
-      border-radius:13px;
-      font-size:14px;
-      line-height:1.4;
-      text-align:center;
-    }
-    .ok { display:block;background:#ecfbf1;color:#176637;border:1px solid #ccefd8; }
-    .err { display:block;background:#fff0f0;color:#9a2630;border:1px solid #f2cccc; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>XX8 Điểm Danh Online</title>
+<script src="https://telegram.org/js/telegram-web-app.js?63"></script>
+<style>
+*{box-sizing:border-box}
+:root{
+  --pink:#fc5a5f;--pink2:#e74f59;--wine:#6b2430;--soft:#fff5f2;
+  --line:#f0d6d8;--text:#24262b;--muted:#806d71;--green:#20b15a;--red:#e94444;
+}
+body{
+  margin:0;min-height:100vh;font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(180deg,#fff0f2 0%,#fff 62%);
+  color:var(--text);padding:14px 12px max(18px,env(safe-area-inset-bottom));
+}
+.wrap{max-width:450px;margin:0 auto}
+.head{text-align:center;padding:6px 4px 15px}
+.logo{
+  width:68px;height:68px;border-radius:22px;margin:0 auto 9px;
+  background:var(--pink);color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:27px;font-weight:900;box-shadow:0 10px 24px rgba(252,90,95,.25)
+}
+h1{font-size:22px;color:var(--wine);margin:0}
+.sub{font-size:13px;color:var(--muted);margin:7px 0 0}
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px;
+  box-shadow:0 12px 32px rgba(80,30,40,.08)
+}
+.user{
+  display:flex;gap:11px;align-items:center;background:var(--soft);border-radius:16px;
+  padding:11px 12px;margin-bottom:15px
+}
+.avatar{
+  width:42px;height:42px;border-radius:50%;border:1px solid var(--line);
+  background:#fff;color:var(--pink);display:flex;align-items:center;justify-content:center;font-weight:900
+}
+.user b{display:block;font-size:14px}.user small{color:#8b777b}
+.section{margin-top:14px}
+.label{font-weight:900;color:var(--wine);font-size:14px;margin-bottom:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.three{display:grid;grid-template-columns:1fr;gap:8px}
+.choice input{display:none}
+.choice label{
+  display:flex;align-items:center;justify-content:center;min-height:48px;padding:8px;
+  border:1.5px solid #e5d7d8;border-radius:13px;background:#fff;font-weight:800;cursor:pointer;text-align:center
+}
+.choice input:checked+label{border-color:var(--pink);background:#fff0f1;color:var(--wine);box-shadow:0 0 0 2px rgba(252,90,95,.08)}
+input[type=text],input[type=password]{
+  width:100%;height:51px;border:1.5px solid #ddd2d4;border-radius:13px;
+  padding:0 14px;font-size:16px;outline:none;background:#fff
+}
+input:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(252,90,95,.11)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+button{
+  width:100%;height:54px;margin-top:16px;border:0;border-radius:14px;
+  background:linear-gradient(180deg,var(--pink),var(--pink2));color:#fff;
+  font-size:16px;font-weight:900;cursor:pointer
+}
+button:disabled{opacity:.55}
+.status{display:none;margin-top:13px;border-radius:13px;padding:12px;text-align:center;font-size:14px;line-height:1.5}
+.ok{display:block;background:#ecfbf1;border:1px solid #caedd6;color:#176637}
+.err{display:block;background:#fff0f0;border:1px solid #f1cccc;color:#9b2731}
+.note{text-align:center;color:#907b7f;font-size:11px;line-height:1.45;margin-top:11px}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="head">
-      <div class="logo">XX8</div>
-      <h1>GỬI THÔNG TIN ULTRA</h1>
-      <p class="sub">Nhập ULTRA ID và gửi trực tiếp đến nhóm quản lý</p>
-    </div>
-
-    <div class="card">
-      <div class="user">
-        <div class="avatar" id="avatar">👤</div>
-        <div>
-          <b id="name">Đang nhận diện Telegram...</b>
-          <small id="tid"></small>
-        </div>
-      </div>
-
-      <label for="ultra">💻 ULTRA ID</label>
-      <input id="ultra" type="text" autocomplete="off" maxlength="100"
-             placeholder="Nhập ULTRA ID" inputmode="text">
-
-      <button id="submitBtn" type="button">XÁC NHẬN GỬI</button>
-      <div id="status" class="status"></div>
-
-      <div class="note">
-        Chỉ tài khoản Telegram đã được quản lý cấp quyền mới gửi được.
-      </div>
-    </div>
+<div class="wrap">
+  <div class="head">
+    <div class="logo">XX8</div>
+    <h1>ĐIỂM DANH BỘ PHẬN ONLINE</h1>
+    <div class="sub">Vào ca / ra ca và gửi ULTRA đến nhóm quản lý</div>
   </div>
 
+  <div class="card">
+    <div class="user">
+      <div class="avatar" id="avatar">👤</div>
+      <div>
+        <b id="name">Đang nhận diện Telegram...</b>
+        <small id="tid"></small>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="label">🔘 TRẠNG THÁI</div>
+      <div class="two">
+        <div class="choice">
+          <input id="checkin" type="radio" name="action" value="CHECK_IN" checked>
+          <label for="checkin">🟢 VÀO CA</label>
+        </div>
+        <div class="choice">
+          <input id="checkout" type="radio" name="action" value="CHECK_OUT">
+          <label for="checkout">🔴 RA CA</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="label">🏢 BỘ PHẬN</div>
+      <div class="three">
+        <div class="choice"><input id="xnk" type="radio" name="dept" value="XNK" checked><label for="xnk">💰 XNK</label></div>
+        <div class="choice"><input id="fk" type="radio" name="dept" value="FK"><label for="fk">💳 FK</label></div>
+        <div class="choice"><input id="cskh" type="radio" name="dept" value="CSKH"><label for="cskh">🎧 CSKH</label></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="label">🕐 CA LÀM VIỆC</div>
+      <div class="three">
+        <div class="choice"><input id="morning" type="radio" name="shift" value="MORNING" checked><label for="morning">☀️ CA SÁNG · 08:00–18:00</label></div>
+        <div class="choice"><input id="middle" type="radio" name="shift" value="MIDDLE"><label for="middle">🌤 CA TRUNG · 16:00–02:00</label></div>
+        <div class="choice"><input id="night" type="radio" name="shift" value="NIGHT"><label for="night">🌙 CA ĐÊM · 22:00–08:00</label></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="label">💻 ULTRA</div>
+      <div class="grid2">
+        <input id="ultraId" type="text" maxlength="100" placeholder="Your ID">
+        <input id="ultraPassword" type="password" maxlength="200" placeholder="Password">
+      </div>
+    </div>
+
+    <button id="submitBtn">XÁC NHẬN GỬI</button>
+    <div id="status" class="status"></div>
+
+    <div class="note">
+      Bản thử nghiệm trên bot mới. ULTRA không được lưu vào database của web này.
+    </div>
+  </div>
+</div>
+
 <script>
-  const tg = window.Telegram?.WebApp;
-  const btn = document.getElementById("submitBtn");
-  const input = document.getElementById("ultra");
-  const statusBox = document.getElementById("status");
+const tg=window.Telegram?.WebApp;
+const btn=document.getElementById("submitBtn");
+const statusBox=document.getElementById("status");
 
-  function showStatus(message, ok) {
-    statusBox.textContent = message;
-    statusBox.className = "status " + (ok ? "ok" : "err");
+function selected(name){
+  return document.querySelector(`input[name="${name}"]:checked`)?.value || "";
+}
+function showStatus(msg,ok){
+  statusBox.textContent=msg;
+  statusBox.className="status "+(ok?"ok":"err");
+}
+if(tg){
+  tg.ready();tg.expand();
+  try{tg.setHeaderColor("#fc5a5f");tg.setBackgroundColor("#fff5f2")}catch(_){}
+  const u=tg.initDataUnsafe?.user;
+  if(u){
+    const full=[u.first_name,u.last_name].filter(Boolean).join(" ");
+    document.getElementById("name").textContent=full||"Nhân viên Telegram";
+    document.getElementById("tid").textContent="Telegram ID: "+u.id;
+    document.getElementById("avatar").textContent=(u.first_name||"T").charAt(0).toUpperCase();
   }
+}else{
+  document.getElementById("name").textContent="Hãy mở ứng dụng từ bot Telegram";
+}
 
-  if (tg) {
-    tg.ready();
-    tg.expand();
-    try {
-      tg.setHeaderColor("#fc5a5f");
-      tg.setBackgroundColor("#fff5f2");
-    } catch (_) {}
+btn.addEventListener("click",async()=>{
+  const ultraId=document.getElementById("ultraId").value.trim();
+  const ultraPassword=document.getElementById("ultraPassword").value.trim();
 
-    const user = tg.initDataUnsafe?.user;
-    if (user) {
-      const fullName = [user.first_name, user.last_name].filter(Boolean).join(" ");
-      document.getElementById("name").textContent = fullName || "Nhân viên Telegram";
-      document.getElementById("tid").textContent = "Telegram ID: " + user.id;
-      document.getElementById("avatar").textContent =
-        (user.first_name || "T").charAt(0).toUpperCase();
-    }
-  } else {
-    document.getElementById("name").textContent = "Hãy mở trang này từ bot Telegram";
+  if(!ultraId){showStatus("Vui lòng nhập Your ID.",false);return}
+  if(!ultraPassword){showStatus("Vui lòng nhập Password.",false);return}
+  if(!tg||!tg.initData){showStatus("Trang này phải được mở từ bot Telegram.",false);return}
+
+  btn.disabled=true;btn.textContent="ĐANG GỬI...";statusBox.className="status";
+  try{
+    const res=await fetch("/submit",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        initData:tg.initData,
+        action:selected("action"),
+        department:selected("dept"),
+        shift:selected("shift"),
+        ultra_id:ultraId,
+        ultra_password:ultraPassword
+      })
+    });
+    const data=await res.json().catch(()=>({}));
+    if(!res.ok||!data.ok)throw new Error(data.message||"Gửi thất bại.");
+
+    showStatus(
+      `✅ ${data.message}\n${data.action} · ${data.department} · ${data.shift_name} · ${data.shift_time}`,
+      true
+    );
+    try{tg.HapticFeedback.notificationOccurred("success")}catch(_){}
+    document.getElementById("ultraId").value="";
+    document.getElementById("ultraPassword").value="";
+  }catch(e){
+    showStatus(e.message||"Có lỗi xảy ra.",false);
+    try{tg.HapticFeedback.notificationOccurred("error")}catch(_){}
+  }finally{
+    btn.disabled=false;btn.textContent="XÁC NHẬN GỬI";
   }
-
-  btn.addEventListener("click", async () => {
-    const ultra = input.value.trim();
-
-    if (!ultra) {
-      showStatus("Vui lòng nhập ULTRA ID.", false);
-      input.focus();
-      return;
-    }
-
-    if (!tg || !tg.initData) {
-      showStatus("Trang này phải được mở từ nút Ứng dụng trong bot Telegram.", false);
-      return;
-    }
-
-    btn.disabled = true;
-    btn.textContent = "ĐANG GỬI...";
-    statusBox.className = "status";
-
-    try {
-      const res = await fetch("/submit", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-          initData: tg.initData,
-          ultra_id: ultra
-        })
-      });
-
-      const data = await res.json().catch(() => ({}));
-
-      if (!res.ok || !data.ok) {
-        throw new Error(data.message || "Gửi thất bại.");
-      }
-
-      showStatus("✅ " + data.message, true);
-      try { tg.HapticFeedback.notificationOccurred("success"); } catch (_) {}
-      input.value = "";
-
-      setTimeout(() => {
-        try { tg.close(); } catch (_) {}
-      }, 1200);
-
-    } catch (err) {
-      showStatus(err.message || "Có lỗi xảy ra.", false);
-      try { tg.HapticFeedback.notificationOccurred("error"); } catch (_) {}
-    } finally {
-      btn.disabled = false;
-      btn.textContent = "XÁC NHẬN GỬI";
-    }
-  });
+});
 </script>
 </body>
 </html>
