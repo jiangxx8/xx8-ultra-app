@@ -3,200 +3,1004 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>XX8 Điểm Danh Online</title>
+<title>ULTRA XX8 WED</title>
+
 <script src="https://telegram.org/js/telegram-web-app.js?63"></script>
+
 <style>
 *{box-sizing:border-box}
+
 :root{
-  --pink:#fc5a5f;--pink2:#e74f59;--wine:#6b2430;--soft:#fff5f2;
-  --line:#f0d6d8;--text:#24262b;--muted:#806d71;--green:#20b15a;--red:#e94444;
+  --pink:#fc5a5f;
+  --pink2:#e84d59;
+  --wine:#6b2430;
+  --soft:#fff5f2;
+  --line:#f0d6d8;
+  --muted:#887478;
 }
+
+html,body{
+  margin:0;
+  min-height:100%;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
 body{
-  margin:0;min-height:100vh;font-family:Arial,Helvetica,sans-serif;
-  background:linear-gradient(180deg,#fff0f2 0%,#fff 62%);
-  color:var(--text);padding:14px 12px max(18px,env(safe-area-inset-bottom));
+  background:linear-gradient(180deg,#fff0f2,#fff 64%);
+  padding:14px 12px;
+  color:#24262b;
 }
-.wrap{max-width:450px;margin:0 auto}
-.head{text-align:center;padding:6px 4px 15px}
+
+.app{
+  max-width:430px;
+  margin:auto;
+}
+
+.header{
+  text-align:center;
+  padding:5px 0 14px;
+}
+
 .logo{
-  width:68px;height:68px;border-radius:22px;margin:0 auto 9px;
-  background:var(--pink);color:#fff;display:flex;align-items:center;justify-content:center;
-  font-size:27px;font-weight:900;box-shadow:0 10px 24px rgba(252,90,95,.25)
+  width:64px;
+  height:64px;
+  border-radius:20px;
+  margin:0 auto 9px;
+  background:linear-gradient(var(--pink),var(--pink2));
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  font-weight:900;
 }
-h1{font-size:22px;color:var(--wine);margin:0}
-.sub{font-size:13px;color:var(--muted);margin:7px 0 0}
+
+h1{
+  font-size:21px;
+  color:var(--wine);
+  margin:0;
+}
+
+.subtitle{
+  font-size:13px;
+  color:var(--muted);
+  margin-top:6px;
+}
+
 .card{
-  background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px;
-  box-shadow:0 12px 32px rgba(80,30,40,.08)
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:16px;
+  box-shadow:0 12px 32px rgba(90,35,45,.08);
 }
+
+/* USER */
+
 .user{
-  display:flex;gap:11px;align-items:center;background:var(--soft);border-radius:16px;
-  padding:11px 12px;margin-bottom:15px
+  display:flex;
+  gap:11px;
+  align-items:center;
+  background:var(--soft);
+  border-radius:15px;
+  padding:10px 12px;
+  margin-bottom:14px;
 }
+
 .avatar{
-  width:42px;height:42px;border-radius:50%;border:1px solid var(--line);
-  background:#fff;color:var(--pink);display:flex;align-items:center;justify-content:center;font-weight:900
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:#fff;
+  border:1px solid var(--line);
+  color:var(--pink);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
 }
-.user b{display:block;font-size:14px}.user small{color:#8b777b}
-.section{margin-top:14px}
-.label{font-weight:900;color:var(--wine);font-size:14px;margin-bottom:8px}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.three{display:grid;grid-template-columns:1fr;gap:8px}
-.choice input{display:none}
-.choice label{
-  display:flex;align-items:center;justify-content:center;min-height:48px;padding:8px;
-  border:1.5px solid #e5d7d8;border-radius:13px;background:#fff;font-weight:800;cursor:pointer;text-align:center
+
+.user b{
+  display:block;
+  font-size:14px;
 }
-.choice input:checked+label{border-color:var(--pink);background:#fff0f1;color:var(--wine);box-shadow:0 0 0 2px rgba(252,90,95,.08)}
-input[type=text],input[type=password]{
-  width:100%;height:51px;border:1.5px solid #ddd2d4;border-radius:13px;
-  padding:0 14px;font-size:16px;outline:none;background:#fff
+
+.user small{
+  color:var(--muted);
+  font-size:12px;
 }
-input:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(252,90,95,.11)}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-button{
-  width:100%;height:54px;margin-top:16px;border:0;border-radius:14px;
-  background:linear-gradient(180deg,var(--pink),var(--pink2));color:#fff;
-  font-size:16px;font-weight:900;cursor:pointer
+
+/* STEP */
+
+.step{
+  display:none;
 }
-button:disabled{opacity:.55}
-.status{display:none;margin-top:13px;border-radius:13px;padding:12px;text-align:center;font-size:14px;line-height:1.5}
-.ok{display:block;background:#ecfbf1;border:1px solid #caedd6;color:#176637}
-.err{display:block;background:#fff0f0;border:1px solid #f1cccc;color:#9b2731}
-.note{text-align:center;color:#907b7f;font-size:11px;line-height:1.45;margin-top:11px}
+
+.step.active{
+  display:block;
+}
+
+.step-title{
+  text-align:center;
+  color:var(--wine);
+  font-size:18px;
+  font-weight:900;
+  margin:4px 0 5px;
+}
+
+.step-sub{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:15px;
+}
+
+.back{
+  border:0;
+  background:none;
+  color:#6e6870;
+  font-size:13px;
+  padding:0;
+  margin-bottom:10px;
+  cursor:pointer;
+}
+
+/* OPTION */
+
+.option{
+  width:100%;
+  min-height:54px;
+  margin:8px 0;
+  border:1.5px solid #e6d8da;
+  border-radius:14px;
+  background:#fff;
+  padding:10px 14px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-size:16px;
+  font-weight:900;
+  cursor:pointer;
+  text-align:left;
+}
+
+.option:hover{
+  border-color:var(--pink);
+  background:#fff7f7;
+}
+
+.icon{
+  font-size:21px;
+  width:26px;
+  text-align:center;
+}
+
+.chevron{
+  margin-left:auto;
+  color:#81777b;
+  font-size:22px;
+  font-weight:400;
+}
+
+/* SELECTED */
+
+.selected{
+  text-align:center;
+  margin-bottom:12px;
+}
+
+.selected strong{
+  font-size:19px;
+  color:var(--wine);
+}
+
+.selected small{
+  display:block;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+/* ULTRA */
+
+.ultra-label{
+  font-size:14px;
+  font-weight:900;
+  color:var(--wine);
+  margin:4px 0 8px;
+}
+
+textarea{
+  width:100%;
+  min-height:115px;
+  resize:vertical;
+  border:1.5px solid #ddd2d4;
+  border-radius:14px;
+  padding:12px 13px;
+  font-size:15px;
+  line-height:1.45;
+  font-family:Arial,Helvetica,sans-serif;
+  outline:none;
+}
+
+textarea:focus{
+  border-color:var(--pink);
+  box-shadow:0 0 0 3px rgba(252,90,95,.11);
+}
+
+.parsed{
+  display:none;
+  background:#f1fbf5;
+  border:1px solid #d1ebda;
+  border-radius:14px;
+  padding:11px 12px;
+  margin-top:10px;
+  font-size:13px;
+  line-height:1.7;
+}
+
+.parsed.show{
+  display:block;
+}
+
+.parsed b{
+  color:#176637;
+}
+
+.primary{
+  width:100%;
+  height:53px;
+  border:0;
+  border-radius:14px;
+  margin-top:13px;
+  background:linear-gradient(var(--pink),var(--pink2));
+  color:#fff;
+  font-size:16px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.primary:disabled{
+  opacity:.55;
+}
+
+.status{
+  display:none;
+  margin-top:12px;
+  border-radius:13px;
+  padding:12px;
+  text-align:center;
+  font-size:14px;
+}
+
+.status.error{
+  display:block;
+  background:#fff0f0;
+  border:1px solid #f1cccc;
+  color:#9b2731;
+}
+
+/* SUCCESS */
+
+.success{
+  text-align:center;
+  padding:10px 0;
+}
+
+.check{
+  width:76px;
+  height:76px;
+  border-radius:50%;
+  margin:0 auto 12px;
+  background:#2cbd5c;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:42px;
+  font-weight:900;
+}
+
+.summary{
+  background:var(--soft);
+  border-radius:15px;
+  padding:12px 14px;
+  margin:14px 0;
+  text-align:left;
+  font-size:14px;
+  line-height:1.9;
+}
+
+.secondary{
+  width:100%;
+  height:49px;
+  border:1.5px solid var(--pink);
+  border-radius:14px;
+  background:#fff;
+  color:var(--wine);
+  font-size:15px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.note{
+  text-align:center;
+  color:#968084;
+  font-size:11px;
+  margin-top:11px;
+}
 </style>
 </head>
+
 <body>
-<div class="wrap">
-  <div class="head">
+
+<div class="app">
+
+  <div class="header">
     <div class="logo">XX8</div>
-    <h1>ĐIỂM DANH BỘ PHẬN ONLINE</h1>
-    <div class="sub">Vào ca / ra ca và gửi ULTRA đến nhóm quản lý</div>
+    <h1>ULTRA XX8 WED</h1>
+    <div class="subtitle">Điểm danh bộ phận Online</div>
   </div>
 
   <div class="card">
+
+    <!-- TELEGRAM USER -->
+
     <div class="user">
       <div class="avatar" id="avatar">👤</div>
+
       <div>
-        <b id="name">Đang nhận diện Telegram...</b>
-        <small id="tid"></small>
+        <b id="name">
+          Đang nhận diện Telegram...
+        </b>
+
+        <small id="telegramId"></small>
       </div>
     </div>
 
-    <div class="section">
-      <div class="label">🔘 TRẠNG THÁI</div>
-      <div class="two">
-        <div class="choice">
-          <input id="checkin" type="radio" name="action" value="CHECK_IN" checked>
-          <label for="checkin">🟢 VÀO CA</label>
+
+    <!-- ===================== -->
+    <!-- BƯỚC 1: BỘ PHẬN -->
+    <!-- ===================== -->
+
+    <section
+      class="step active"
+      id="stepDepartment"
+    >
+
+      <div class="step-title">
+        👥 CHỌN BỘ PHẬN
+      </div>
+
+      <div class="step-sub">
+        Chọn bộ phận để hiển thị đúng khung giờ
+      </div>
+
+
+      <button
+        class="option"
+        data-department="XNK"
+      >
+        <span class="icon">💰</span>
+
+        XNK
+
+        <span class="chevron">
+          ›
+        </span>
+      </button>
+
+
+      <button
+        class="option"
+        data-department="FK"
+      >
+        <span class="icon">💳</span>
+
+        FK
+
+        <span class="chevron">
+          ›
+        </span>
+      </button>
+
+
+      <button
+        class="option"
+        data-department="CSKH"
+      >
+        <span class="icon">🎧</span>
+
+        CSKH
+
+        <span class="chevron">
+          ›
+        </span>
+      </button>
+
+    </section>
+
+
+    <!-- ===================== -->
+    <!-- BƯỚC 2: CA -->
+    <!-- ===================== -->
+
+    <section
+      class="step"
+      id="stepShift"
+    >
+
+      <button
+        class="back"
+        id="backDepartment"
+      >
+        ← Quay lại
+      </button>
+
+
+      <div class="selected">
+
+        <strong id="departmentTitle">
+          XNK
+        </strong>
+
+        <small>
+          Chọn ca làm việc
+        </small>
+
+      </div>
+
+
+      <div id="shiftList"></div>
+
+    </section>
+
+
+    <!-- ===================== -->
+    <!-- BƯỚC 3: ULTRA -->
+    <!-- ===================== -->
+
+    <section
+      class="step"
+      id="stepUltra"
+    >
+
+      <button
+        class="back"
+        id="backShift"
+      >
+        ← Quay lại
+      </button>
+
+
+      <div class="selected">
+
+        <strong id="selectedTitle"></strong>
+
+        <small>
+          Dán thông tin ULTRA
+        </small>
+
+      </div>
+
+
+      <div class="ultra-label">
+        💻 THÔNG TIN ULTRA
+      </div>
+
+
+      <textarea
+        id="ultraPaste"
+        placeholder="Dán nguyên đoạn vào đây:
+
+Your ID: 215257316
+Password: xebxp0"
+      ></textarea>
+
+
+      <!-- TỰ TÁCH ULTRA -->
+
+      <div
+        class="parsed"
+        id="parsedBox"
+      >
+
+        <div>
+          ✅ Your ID:
+          <b id="parsedId"></b>
         </div>
-        <div class="choice">
-          <input id="checkout" type="radio" name="action" value="CHECK_OUT">
-          <label for="checkout">🔴 RA CA</label>
+
+        <div>
+          ✅ Password:
+          <b id="parsedPassword">
+            ••••••
+          </b>
         </div>
+
       </div>
-    </div>
 
-    <div class="section">
-      <div class="label">🏢 BỘ PHẬN</div>
-      <div class="three">
-        <div class="choice"><input id="xnk" type="radio" name="dept" value="XNK" checked><label for="xnk">💰 XNK</label></div>
-        <div class="choice"><input id="fk" type="radio" name="dept" value="FK"><label for="fk">💳 FK</label></div>
-        <div class="choice"><input id="cskh" type="radio" name="dept" value="CSKH"><label for="cskh">🎧 CSKH</label></div>
+
+      <button
+        class="primary"
+        id="submitButton"
+      >
+        XÁC NHẬN GỬI
+      </button>
+
+
+      <div
+        class="status"
+        id="status"
+      ></div>
+
+
+      <div class="note">
+        Copy cả Your ID + Password và dán 1 lần.
       </div>
-    </div>
 
-    <div class="section">
-      <div class="label">🕐 CA LÀM VIỆC</div>
-      <div class="three">
-        <div class="choice"><input id="morning" type="radio" name="shift" value="MORNING" checked><label for="morning">☀️ CA SÁNG · 08:00–18:00</label></div>
-        <div class="choice"><input id="middle" type="radio" name="shift" value="MIDDLE"><label for="middle">🌤 CA TRUNG · 16:00–02:00</label></div>
-        <div class="choice"><input id="night" type="radio" name="shift" value="NIGHT"><label for="night">🌙 CA ĐÊM · 22:00–08:00</label></div>
+    </section>
+
+
+    <!-- ===================== -->
+    <!-- BƯỚC 4: THÀNH CÔNG -->
+    <!-- ===================== -->
+
+    <section
+      class="step"
+      id="stepSuccess"
+    >
+
+      <div class="success">
+
+        <div class="check">
+          ✓
+        </div>
+
+        <div class="step-title">
+          GỬI THÀNH CÔNG!
+        </div>
+
+        <div class="step-sub">
+          Thông tin đã gửi đến nhóm quản lý.
+        </div>
+
+
+        <div class="summary">
+
+          🏢 Bộ phận:
+          <b id="summaryDepartment"></b>
+
+          <br>
+
+          🕐 Ca làm:
+          <b id="summaryShift"></b>
+
+          <br>
+
+          💻 Your ID:
+          <b id="summaryId"></b>
+
+        </div>
+
+
+        <button
+          class="secondary"
+          id="sendAgain"
+        >
+          ↻ GỬI CA KHÁC
+        </button>
+
       </div>
-    </div>
 
-    <div class="section">
-      <div class="label">💻 ULTRA</div>
-      <div class="grid2">
-        <input id="ultraId" type="text" maxlength="100" placeholder="Your ID">
-        <input id="ultraPassword" type="password" maxlength="200" placeholder="Password">
-      </div>
-    </div>
+    </section>
 
-    <button id="submitBtn">XÁC NHẬN GỬI</button>
-    <div id="status" class="status"></div>
 
-    <div class="note">
-      Bản thử nghiệm trên bot mới. ULTRA không được lưu vào database của web này.
-    </div>
   </div>
+
 </div>
 
+
 <script>
-const tg=window.Telegram?.WebApp;
-const btn=document.getElementById("submitBtn");
-const statusBox=document.getElementById("status");
 
-function selected(name){
-  return document.querySelector(`input[name="${name}"]:checked`)?.value || "";
-}
-function showStatus(msg,ok){
-  statusBox.textContent=msg;
-  statusBox.className="status "+(ok?"ok":"err");
-}
-if(tg){
-  tg.ready();tg.expand();
-  try{tg.setHeaderColor("#fc5a5f");tg.setBackgroundColor("#fff5f2")}catch(_){}
-  const u=tg.initDataUnsafe?.user;
-  if(u){
-    const full=[u.first_name,u.last_name].filter(Boolean).join(" ");
-    document.getElementById("name").textContent=full||"Nhân viên Telegram";
-    document.getElementById("tid").textContent="Telegram ID: "+u.id;
-    document.getElementById("avatar").textContent=(u.first_name||"T").charAt(0).toUpperCase();
-  }
-}else{
-  document.getElementById("name").textContent="Hãy mở ứng dụng từ bot Telegram";
-}
+/* =========================
+   TELEGRAM
+========================= */
 
-btn.addEventListener("click",async()=>{
-  const ultraId=document.getElementById("ultraId").value.trim();
-  const ultraPassword=document.getElementById("ultraPassword").value.trim();
+const tg =
+  window.Telegram?.WebApp;
 
-  if(!ultraId){showStatus("Vui lòng nhập Your ID.",false);return}
-  if(!ultraPassword){showStatus("Vui lòng nhập Password.",false);return}
-  if(!tg||!tg.initData){showStatus("Trang này phải được mở từ bot Telegram.",false);return}
 
-  btn.disabled=true;btn.textContent="ĐANG GỬI...";statusBox.className="status";
-  try{
-    const res=await fetch("/submit",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        initData:tg.initData,
-        action:selected("action"),
-        department:selected("dept"),
-        shift:selected("shift"),
-        ultra_id:ultraId,
-        ultra_password:ultraPassword
-      })
-    });
-    const data=await res.json().catch(()=>({}));
-    if(!res.ok||!data.ok)throw new Error(data.message||"Gửi thất bại.");
+/* =========================
+   KHUNG GIỜ
+========================= */
 
-    showStatus(
-      `✅ ${data.message}\n${data.action} · ${data.department} · ${data.shift_name} · ${data.shift_time}`,
-      true
+const SHIFTS = {
+
+  XNK: [
+
+    {
+      code:"XNK_08_18",
+      icon:"☀️",
+      label:"08:00 - 18:00"
+    },
+
+    {
+      code:"XNK_13_23",
+      icon:"🌤️",
+      label:"13:00 - 23:00"
+    },
+
+    {
+      code:"XNK_22_08",
+      icon:"🌙",
+      label:"22:00 - 08:00"
+    }
+
+  ],
+
+
+  FK: [
+
+    {
+      code:"FK_08_18",
+      icon:"☀️",
+      label:"08:00 - 18:00"
+    },
+
+    {
+      code:"FK_12_22",
+      icon:"🌤️",
+      label:"12:00 - 22:00"
+    },
+
+    {
+      code:"FK_22_08",
+      icon:"🌙",
+      label:"22:00 - 08:00"
+    }
+
+  ],
+
+
+  CSKH: [
+
+    {
+      code:"CSKH_11_21",
+      icon:"🔵",
+      label:"11:00 - 21:00"
+    },
+
+    {
+      code:"CSKH_08_18",
+      icon:"☀️",
+      label:"08:00 - 18:00"
+    },
+
+    {
+      code:"CSKH_16_02",
+      icon:"🌆",
+      label:"16:00 - 02:00"
+    },
+
+    {
+      code:"CSKH_22_08",
+      icon:"🌙",
+      label:"22:00 - 08:00"
+    }
+
+  ]
+
+};
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+let selectedDepartment = "";
+
+let selectedShift = null;
+
+let ultraId = "";
+
+let ultraPassword = "";
+
+
+/* =========================
+   ĐỔI MÀN HÌNH
+========================= */
+
+function showStep(id){
+
+  document
+    .querySelectorAll(".step")
+    .forEach(
+      step =>
+        step.classList.remove("active")
     );
-    try{tg.HapticFeedback.notificationOccurred("success")}catch(_){}
-    document.getElementById("ultraId").value="";
-    document.getElementById("ultraPassword").value="";
-  }catch(e){
-    showStatus(e.message||"Có lỗi xảy ra.",false);
-    try{tg.HapticFeedback.notificationOccurred("error")}catch(_){}
-  }finally{
-    btn.disabled=false;btn.textContent="XÁC NHẬN GỬI";
-  }
-});
-</script>
-</body>
-</html>
+
+  document
+    .getElementById(id)
+    .classList.add("active");
+
+}
+
+
+/* =========================
+   CHỌN BỘ PHẬN
+========================= */
+
+document
+  .querySelectorAll(
+    "[data-department]"
+  )
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        selectedDepartment =
+          button.dataset.department;
+
+        selectedShift = null;
+
+        renderShifts();
+
+        showStep(
+          "stepShift"
+        );
+
+      }
+    );
+
+  });
+
+
+/* =========================
+   HIỆN CA THEO BỘ PHẬN
+========================= */
+
+function renderShifts(){
+
+  document
+    .getElementById(
+      "departmentTitle"
+    )
+    .textContent =
+      selectedDepartment;
+
+
+  const list =
+    document.getElementById(
+      "shiftList"
+    );
+
+
+  list.innerHTML = "";
+
+
+  SHIFTS[
+    selectedDepartment
+  ].forEach(shift => {
+
+    const button =
+      document.createElement(
+        "button"
+      );
+
+
+    button.className =
+      "option";
+
+
+    button.innerHTML = `
+
+      <span class="icon">
+        ${shift.icon}
+      </span>
+
+      ${shift.label}
+
+      <span class="chevron">
+        ›
+      </span>
+
+    `;
+
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        selectedShift =
+          shift;
+
+
+        document
+          .getElementById(
+            "selectedTitle"
+          )
+          .textContent =
+
+          selectedDepartment
+          +
+          " · "
+          +
+          shift.label;
+
+
+        showStep(
+          "stepUltra"
+        );
+
+
+        setTimeout(
+          () =>
+            document
+              .getElementById(
+                "ultraPaste"
+              )
+              .focus(),
+          100
+        );
+
+      }
+    );
+
+
+    list.appendChild(
+      button
+    );
+
+  });
+
+}
+
+
+/* =========================
+   QUAY LẠI
+========================= */
+
+document
+  .getElementById(
+    "backDepartment"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      showStep(
+        "stepDepartment"
+      );
+
+    }
+  );
+
+
+document
+  .getElementById(
+    "backShift"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      showStep(
+        "stepShift"
+      );
+
+    }
+  );
+
+
+/* =========================
+   TỰ TÁCH ULTRA
+========================= */
+
+const ultraPaste =
+  document.getElementById(
+    "ultraPaste"
+  );
+
+
+function parseUltra(){
+
+  const text =
+    ultraPaste
+      .value
+      .replace(
+        /\r/g,
+        ""
+      );
+
+
+  /* YOUR ID */
+
+  const idMatch =
+
+    text.match(
+      /Your\s*ID\s*[:：]\s*([^\n]+)/i
+    )
+
+    ||
+
+    text.match(
+      /ID\s*của\s*bạn\s*[:：]\s*([^\n]+)/i
+    );
+
+
+  /* PASSWORD */
+
+  const passwordMatch =
+
+    text.match(
+      /Password\s*[:：]\s*([^\n]+)/i
+    )
+
+    ||
+
+    text.match(
+      /Mật\s*khẩu\s*[:：]\s*([^\n]+)/i
+    );
+
+
+  ultraId =
+    idMatch
+      ?
+      idMatch[1].trim()
+      :
+      "";
+
+
+  ultraPassword =
+    passwordMatch
+      ?
+      passwordMatch[1].trim()
+      :
+      "";
+
+
+  const box =
+    document.getElementById(
+      "parsedBox"
+    );
+
+
+  if(
+    ultraId
+    &&
+    ultraPassword
+  ){
+
+    document
+      .getElementById(
+        "parsedId"
+      )
+      .textContent =
+        ultraId;
+
+
+    document
+      .getElementById(
+        "parsedPassword"
+      )
+      .textContent =
+
+      "•".repeat(
+
+        Math.min(
+
+          Math.max(
+            ultraPassword.length,
+            6
+          ),
+
+          12
+
+        )
+
+      );
+
+
+    box.classList.add(
+      "show
